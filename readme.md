@@ -1,9 +1,31 @@
 # MUTANT
-    
-    add project.local to your hosts
 
-    docker network create --gateway 172.18.0.1 --subnet 172.18.0.0/24 mutant-network
+Is a api for Magneto search for mutants.
 
-    docker-compose up
+## Instalation
 
-    docker exec -it -w /mutant mutant_php php artisan migrate
+add project.local to your hosts file
+
+```bash
+127.0.0.1 project local
+```
+
+## Run Command for create a docker network
+```bash
+docker network create --gateway 172.18.0.1 --subnet 172.18.0.0/24 mutant-network
+```
+
+## Run docker compose to up containers
+```bash
+docker-compose up
+```
+
+## Run composer
+```bash
+docker exec -it -w /mutant mutant_php composer install
+```
+
+## Run the migration
+```bash
+docker exec -it -w /mutant mutant_php php artisan migrate
+```
