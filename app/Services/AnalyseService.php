@@ -6,6 +6,7 @@ use App\Mutant\MutantInterface;
 use App\Mutant\Analyse;
 use App\Repository\DnaRepository;
 use App\Validator\DnaValidator;
+use Cache;
 
 class AnalyseService
 {
@@ -42,7 +43,7 @@ class AnalyseService
 
         $dnaString = md5(implode('', $dna));
 
-        $mutant = $this->dnaRepository->find($dnaString);
+        $mutant = $this->findDna($dnaString);
 
         if ($mutant) {
             return $mutant->mutant == 1;
@@ -59,6 +60,26 @@ class AnalyseService
             ]
         );
 
+        Cache::forget('countHumans');
+        Cache::forget('countMutants');
+
         return $result;
+    }
+
+    public function findDna(string $dna)
+    {
+        if (Cache::has('dna-' . $dna)) {
+            $mutant = new \stdClass;
+            $mutant->mutant = Cache::get('dna-' . $dna);
+            return $mutant;
+        }
+
+        $mutant = $this->dnaRepository->find($dna);
+
+        if ($mutant) {
+            Cache::forever('dna-' . $dna, $mutant->mutant);
+        }
+        
+        return $mutant;
     }
 }

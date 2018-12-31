@@ -25,16 +25,13 @@ class StatsController extends Controller
      */
     public function stats()
     {
-        $humans = $this->statsService->countHumans();
-        $mutants = $this->statsService->countMutants();
-
-        $ratio = $mutants / $humans;
+        $stats = $this->statsService->stats();
 
         return response()->json(
             [
-                'count_mutant_dna' => $mutants,
-                'count_human_dna' => $humans,
-                'ratio' => $ratio
+                'count_mutant_dna' => $stats['mutants'],
+                'count_human_dna' => $stats['humans'],
+                'ratio' => $stats['ratio']
             ],
             200
         );
