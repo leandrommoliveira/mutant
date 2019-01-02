@@ -15,5 +15,13 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->post('/mutant', 'Mutant\AnalyseController@analyse');
-$router->get('/stats', 'Mutant\StatsController@stats');
+$router->post('/auth/login', 'Mutant\AuthController@authenticate');
+
+
+$router->group(
+    ['middleware' => 'jwt.auth'],
+    function() use ($router) {
+        $router->post('/mutant', 'Mutant\AnalyseController@analyse');
+        $router->get('/stats', 'Mutant\StatsController@stats');
+    }
+);

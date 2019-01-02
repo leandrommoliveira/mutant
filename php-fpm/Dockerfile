@@ -6,8 +6,8 @@ RUN set -ex \
     && apk add --no-cache libpq libmagic libmcrypt libmcrypt-dev icu-dev \
     && apk add --no-cache --virtual .phpize-deps $PHPIZE_DEPS \
     && docker-php-ext-install bcmath intl mcrypt opcache pcntl pdo_mysql \
-    && pecl install redis \
-    && docker-php-ext-enable redis \
+    && pecl install xdebug redis \
+    && docker-php-ext-enable xdebug redis \
     && apk del .phpize-deps
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \

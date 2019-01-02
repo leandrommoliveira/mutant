@@ -13,7 +13,8 @@
 
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->email,
+        'name' => 'Erik Magnus Lehnsherr',
+        'email' => 'magneto@teammagneto.com',
+        'password' => password_hash('12345678', PASSWORD_BCRYPT)
     ];
 });

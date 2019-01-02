@@ -59,8 +59,12 @@ class StatsService
         $humans = $this->countHumans();
         $mutants = $this->countMutants();
 
-        $ratio = $mutants / $humans;
+        $ratio = 0;
 
+        if ($mutants && $humans) {
+            $ratio = $mutants / $humans;
+        }
+        
         return [
             'humans' => $humans,
             'mutants' => $mutants,

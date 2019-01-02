@@ -29,3 +29,16 @@ docker exec -it -w /mutant mutant_php composer install
 ```bash
 docker exec -it -w /mutant mutant_php php artisan migrate
 ```
+
+## Run the seed command
+```bash
+docker exec -it -w /mutant mutant_php php artisan db:seed
+```
+
+## Run the tests (Will generate a coverage report in folder "reports")
+```bash
+docker exec -it -w /mutant mutant_php ./vendor/bin/phpunit
+```
+
+## Examples
+The sample requests are in the folder "postman"

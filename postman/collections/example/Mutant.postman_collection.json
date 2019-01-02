@@ -1,0 +1,128 @@
+{
+	"info": {
+		"_postman_id": "e2d2d792-978f-4359-8930-5141f8819c4d",
+		"name": "Mutant",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://project.local/auth/login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\" : \"magneto@teammagneto.com\",\n\t\"password\" : \"12345678\"\n}"
+				},
+				"url": {
+					"raw": "http://project.local/auth/login",
+					"protocol": "http",
+					"host": [
+						"project",
+						"local"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				},
+				"description": "Login example"
+			},
+			"response": []
+		},
+		{
+			"name": "http://project.local/stats",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsdW1lbi1qd3QiLCJzdWIiOjEsImlhdCI6MTU0NjM4Nzg1NSwiZXhwIjoxNTQ2MzkxNDU1fQ.tRNuO_k7OFK14qZF8THZm-_XuzxDOfKM5BTjqE5ykBk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://project.local/stats",
+					"protocol": "http",
+					"host": [
+						"project",
+						"local"
+					],
+					"path": [
+						"stats"
+					]
+				},
+				"description": "Mutant stats exemple"
+			},
+			"response": []
+		},
+		{
+			"name": "http://project.local/mutant",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "95cd5229-75a9-4668-8dd4-6f108e298c08",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsdW1lbi1qd3QiLCJzdWIiOjEsImlhdCI6MTU0NjM4Nzg1NSwiZXhwIjoxNTQ2MzkxNDU1fQ.tRNuO_k7OFK14qZF8THZm-_XuzxDOfKM5BTjqE5ykBk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"dna\":[\"ATGCGA\",\"CAGTGC\",\"TTATGT\",\"AGAAGG\",\"CCCCTA\",\"TCACTG\"]\r\n}"
+				},
+				"url": {
+					"raw": "http://project.local/mutant",
+					"protocol": "http",
+					"host": [
+						"project",
+						"local"
+					],
+					"path": [
+						"mutant"
+					]
+				},
+				"description": "post mutant example"
+			},
+			"response": []
+		}
+	]
+}
